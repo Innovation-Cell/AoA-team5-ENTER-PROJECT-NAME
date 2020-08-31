@@ -1,0 +1,11 @@
+Execute everything mentioned below in different terminals
+
+For Adv PS
+
+roslaunch hitter_pole main.launch
+
+insert platform and objects at proper locations
+
+rosrun  hitter_pole latest.py (for only catapult)
+OR
+rosrun hitter_pole something.py (for integrated code)

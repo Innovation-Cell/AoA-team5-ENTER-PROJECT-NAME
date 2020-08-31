@@ -1,0 +1,12 @@
+cannon:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+
+  piston_controller:
+    type: position_controllers/JointPositionController
+    joint: piston_move
+
+

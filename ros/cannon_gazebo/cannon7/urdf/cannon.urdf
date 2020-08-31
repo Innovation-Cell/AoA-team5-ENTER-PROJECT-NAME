@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="cannon">
+
+  <link
+    name="cannon7">
+    <inertial>
+      <origin
+        xyz="0 0 4.86131984276869E-35"
+        rpy="0 0 0" />
+      <mass
+        value="5" />
+      <inertia
+        ixx="2.1524E-06"
+        ixy="-1.8456E-39"
+        ixz="-1.6642E-38"
+        iyy="2.1524E-06"
+        iyz="-2.1310211914254E-22"
+        izz="1.0534E-06" />
+    </inertial>
+
+    <surface>
+      <bounce>
+        <restitution_coefficient>0</restitution_coefficient>
+        <threshold>0</threshold>
+      </bounce>
+      <contact>
+        <ode>
+          <max_vel>10</max_vel>
+        </ode>
+      </contact>
+    </surface>
+
+
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cannon7/meshes/cannon7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+        <texture
+          filename="package://cannon7/textures/" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cannon7/meshes/cannon7.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link name="world"/>
+
+  <joint name="grounding" type="fixed">
+    <parent link="world"/>
+    <child link="cannon7"/>
+  </joint>
+
+
+
+  <link
+    name="piston">
+
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="2" />
+      <inertia
+        ixx="1.1454E-08"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="1.1454E-08"
+        iyz="0.0"
+        izz="9.8175E-09" />
+    </inertial>
+
+    <surface>
+      <bounce>
+        <restitution_coefficient>1</restitution_coefficient>
+        <threshold>0</threshold>
+      </bounce>
+      <contact>
+        <ode>
+          <max_vel>10</max_vel>
+        </ode>
+      </contact>
+    </surface>
+
+
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piston/meshes/piston.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+        <texture
+          filename="package://piston/textures/" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.005"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius= "0.005" length = "0.01" /> 
+      </geometry>
+    </collision>
+  </link>
+
+
+
+  <joint name="piston_move" type="prismatic">
+    <parent link="cannon7"/>
+    <child link="piston"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="0.0" upper="1" velocity="1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <transmission name="piston_move" type="SimpleTransmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="piston_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="piston_move">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/cannon</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="piston">
+    <selfCollide>1</selfCollide>
+  </gazebo>
+
+  <gazebo reference="ball">
+    <selfCollide>1</selfCollide>
+  </gazebo>
+
+  <gazebo reference="cannon7">
+    <selfCollide>1</selfCollide>
+  </gazebo>
+
+
+
+
+</robot>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="catapult">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.20206898684349 0.183972010867699 0.419461383138093"
+        rpy="0 0 0" />
+      <mass
+        value="12.0951317163207" />
+      <inertia
+        ixx="0.240602460366786"
+        ixy="-6.70669178553773E-34"
+        ixz="9.10749212804423E-34"
+        iyy="0.462795867781946"
+        iyz="6.0662650927506E-18"
+        izz="0.240602460366786" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://catapult/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://catapult/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link_1">
+    <inertial>
+      <origin
+        xyz="0 0.039372 -2.7756E-17"
+        rpy="0 0 0" />
+      <mass
+        value="8.6111" />
+      <inertia
+        ixx="0.10218"
+        ixy="-5.123E-18"
+        ixz="-1.0408E-17"
+        iyy="0.17002"
+        iyz="4.9412E-18"
+        izz="0.084549" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://catapult/meshes/link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://catapult/meshes/link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_1"
+    type="continuous">
+    <origin
+      xyz="0.20207 -0.41946 0.18644"
+      rpy="1.5708 0 -0.91382" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_1" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="link_2">
+    <inertial>
+      <origin
+        xyz="6.0572E-13 0.0056318 -0.69531"
+        rpy="0 0 0" />
+      <mass
+        value="30.015" />
+      <inertia
+        ixx="5.3541"
+        ixy="-7.4367E-12"
+        ixz="8.6761E-12"
+        iyy="5.6884"
+        iyz="0.074622"
+        izz="0.56132" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://catapult/meshes/link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://catapult/meshes/link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_2"
+    type="revolute">
+    <origin
+      xyz="0 0.11 0"
+      rpy="0.21536 1.5708 0.049958" />
+    <parent
+      link="link_1" />
+    <child
+      link="link_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>
